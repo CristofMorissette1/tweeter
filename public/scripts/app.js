@@ -53,7 +53,7 @@ const data = [
     }
   ];
   
- 
+ //creating tweets object
  function createTweetElement(tweet) {
 return ` <article class="tweet-container">
 <header class="tweet-header">
@@ -70,14 +70,14 @@ return ` <article class="tweet-container">
 </footer>
 </article>`
 }
-
+//accessing tweets saving to a variable and prepending to tweets container
 function renderTweets(tweets) {
   for (tweet in tweets) {
       let $newTweet = createTweetElement(tweets[tweet]);
       $('#tweets1').prepend($newTweet);
     }
 }
-  
+  //getting tweets
 function getAllTweets() {
   $.get("/tweets", function(data) {
     renderTweets(data);
@@ -90,11 +90,18 @@ function getAllTweets() {
 let $form = $(".textbox");
 // bind a submit event handler to the right form
 $form.on('submit', function(event) {
-  event.preventDefault()
-  $.post( "/tweets", $(this).serialize(), function( data ) {
-   getAllTweets();
-  }); 
+  event.preventDefault() 
+ if ($('.counter').text() < 0) {
+   alert("too many characters");
   
-})
+ } else if ($('.counter').text() === 140) {
+   alert("nothing to tweet");
+ } else {
+  $.post( "/tweets", $(this).serialize(), function( data ) {
+    getAllTweets();
+    $('.text').val('');
+    $('.counter').text(140);
+ })}
+});
  
 
