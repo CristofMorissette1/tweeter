@@ -52,6 +52,53 @@ const data = [
       "created_at": 1461113796368
     }
   ];
+
+  var tweets = [
+    {
+      "user": {
+        "name": "Newton",
+        "avatars": {
+          "small":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_50.png",
+          "regular": "https://vanillicon.com/788e533873e80d2002fa14e1412b4188.png",
+          "large":   "https://vanillicon.com/788e533873e80d2002fa14e1412b4188_200.png"
+        },
+        "handle": "@SirIsaac"
+      },
+      "content": {
+        "text": "If I have seen further it is by standing on the shoulders of giants"
+      },
+      "created_at": 1461116232227
+    },
+    {
+      "user": {
+        "name": "Descartes",
+        "avatars": {
+          "small":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_50.png",
+          "regular": "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc.png",
+          "large":   "https://vanillicon.com/7b89b0d8280b93e2ba68841436c0bebc_200.png"
+        },
+        "handle": "@rd" },
+      "content": {
+        "text": "Je pense , donc je suis"
+      },
+      "created_at": 1461113959088
+    },
+    {
+      "user": {
+        "name": "Johann von Goethe",
+        "avatars": {
+          "small":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_50.png",
+          "regular": "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1.png",
+          "large":   "https://vanillicon.com/d55cf8e18b47d4baaf60c006a0de39e1_200.png"
+        },
+        "handle": "@johann49"
+      },
+      "content": {
+        "text": "Es ist nichts schrecklicher als eine tätige Unwissenheit."
+      },
+      "created_at": 1461113796368
+    }
+  ]
   
  //creating tweets object
  function createTweetElement(tweet) {
@@ -90,18 +137,37 @@ function getAllTweets() {
 let $form = $(".textbox");
 // bind a submit event handler to the right form
 $form.on('submit', function(event) {
-  event.preventDefault() 
- if ($('.counter').text() < 0) {
-   alert("too many characters");
+  event.preventDefault()
+  var counter = $('.counter').text();
+ if (counter < 0) {
+   $('.errorChar').show();
   
- } else if ($('.counter').text() === 140) {
-   alert("nothing to tweet");
+ } else if (counter == 140) {
+   $('.errorEmpty').show();
  } else {
-  $.post( "/tweets", $(this).serialize(), function( data ) {
-    getAllTweets();
-    $('.text').val('');
-    $('.counter').text(140);
- })}
-});
+  $.ajax( "/tweets", {
+    method: 'post',
+    data: $($form).serialize(),
+    complete: function() {
+      $('.text').val('');
+      $('.counter').text(140);
+      getAllTweets();
+      $('.text').focus();
+    } 
+  })
+}
+})
  
+let $compose = $(".new-tweet");
+let newTweetMargin = $('.new-tweet').css('margin-top');
+
+$('#compose').on('click', function(event) {
+  if ($(".new-tweet").css('margin-top') === '-194px') {
+    $(".new-tweet").animate({'margin-top': newTweetMargin}, 500);
+    $('.text').focus();
+  }
+  if ($(".new-tweet").css('margin-top') === newTweetMargin) {
+    $(".new-tweet").animate({'margin-top': -194}, 500);
+  }
+})
 

@@ -4,7 +4,7 @@ height: 80px;
 width: 100%;
 background-color: #00A087;
 color: #E8FDFF;
-padding: 2em 0px;
+z-index: 1;
 }
 
 #nav-bar .logo {
@@ -19,3 +19,9 @@ float: left;
 font-size: 200%;
 position: center;
 }
+
+nav#nav-bar > * {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}    

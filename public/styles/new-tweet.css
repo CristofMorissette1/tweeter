@@ -42,3 +42,20 @@ textarea {
 .tweet-container:hover {
 opacity: 1;
 }
+
+#compose {
+  position: relative;
+  left: 70rem;
+  width: 7rem;
+  height: 3rem;
+}
+
+.error {
+  height:17px;
+    border-top:1px solid #99182c;
+    border-right:1px solid #99182c;
+    border-bottom:1px solid #99182c;
+    margin-left:9px;
+    padding:1px 5px 0px 5px;
+    font-size: small;
+}
