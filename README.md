@@ -15,3 +15,8 @@ This repository is the starter code for the project: Students will fork and clon
 
 - Express
 - Node 5.10.x or above
+##Screenshots
+
+
+!["Screenshot of tweets main"](https://github.com/CristofMorissette1/tweeter/blob/master/docs/main.png?raw=true)
+!["Screenshot of tweets container"](https://github.com/CristofMorissette1/tweeter/blob/master/docs/tweets%20container.png?raw=true)
