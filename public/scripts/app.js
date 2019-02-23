@@ -113,6 +113,9 @@ return ` <article class="tweet-container">
   <p> ${tweet.content.text}</p>
 </section>
 <footer class="tweet-footer">
+<i class="fas fa-flag"></i>
+<i class="fas fa-retweet"></i>
+<i class="far fa-thumbs-up"></i>
   <p>${tweet.created_at}</p>
 </footer>
 </article>`
@@ -140,10 +143,10 @@ $form.on('submit', function(event) {
   event.preventDefault()
   var counter = $('.counter').text();
  if (counter < 0) {
-   $('.errorChar').show();
+   $('.errorChar').show().fadeOut(3000);
   
  } else if (counter == 140) {
-   $('.errorEmpty').show();
+   $('.errorEmpty').show().fadeOut(3000);
  } else {
   $.ajax( "/tweets", {
     method: 'post',
@@ -171,3 +174,4 @@ $('#compose').on('click', function(event) {
   }
 })
 
+getAllTweets();
