@@ -116,7 +116,7 @@ return ` <article class="tweet-container">
 <i class="fas fa-flag"></i>
 <i class="fas fa-retweet"></i>
 <i class="far fa-thumbs-up"></i>
-  <p>${tweet.created_at}</p>
+  <p>${new Date(tweet.created_at)}</p>
 </footer>
 </article>`
 }

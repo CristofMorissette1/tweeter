@@ -4,9 +4,9 @@ $(document).ready(function() {
     var $textMax= 140;
   $(".counter").html($textMax);
 
-  $("textarea").keydown (function() {
-      var $textLength = $("textarea").val().length;
-      var $textRemaining = $textMax - $textLength -1;
+  $("textarea").keydown (function(evt) {
+      var $textLength = evt.target.value.length;
+      var $textRemaining = $textMax - $textLength;
 
       if ($textRemaining < 0) {
         $(".counter").css('color', 'red');
