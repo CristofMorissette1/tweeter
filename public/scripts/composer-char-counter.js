@@ -1,6 +1,5 @@
 $(document).ready(function() {
-   
-
+  
     var $textMax= 140;
   $(".counter").html($textMax);
 
