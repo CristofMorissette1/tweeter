@@ -35,13 +35,15 @@ textarea {
 .tweet-footer {
   width: 100%;
   border-top: 1px solid #000;
+  display: flex;
 }
 .image {
   padding: 5px;
   border-radius: 10px;
 }
 
-.tweet-container:hover {
+.tweet-container:hover,
+.tweet-container:hover #icons {
 opacity: 1;
 }
 
@@ -62,7 +64,28 @@ opacity: 1;
     font-size: small;
 }
 
-i {
+#icons {
   position: relative;
-  left: 18rem;
+  left: 17.5rem;
+  padding: 0.3rem;
+  opacity: 0;
+}
+
+#date {
+  margin: 0;
+  padding: 0.3rem;
+  position: relative;
+  right: 4rem;
+}
+
+p {
+  padding: 1rem
+}
+
+#header {
+  display: flex;
+}
+
+.name {
+  margin-left: auto;
 }

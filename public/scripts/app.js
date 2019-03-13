@@ -102,24 +102,52 @@ const data = [
   
  //creating tweets object
  function createTweetElement(tweet) {
+  let currentDate = new Date(Date.now());
+  let tweetDate = new Date(tweet.created_at);
+  let numYear = currentDate.getFullYear() - tweetDate.getFullYear();
+  let numMonths = currentDate.getMonth() - tweetDate.getMonth();
+  let numDays = currentDate.getDate() - tweetDate.getDate();
+  let numHours = currentDate.getHours() - tweetDate.getHours();
+  let numMin = currentDate.getMinutes() - tweetDate.getMinutes();
+  let displayDate;
+    const resolveS = (num) => num !== 1 ? 's' : ''; //This just checks if an 's' should be added to the string
+    //All this is just comparing the numbers from above to determine the amount of time that has passed
+    //Set displayDate to string
+    if (numYear >= 1) {
+      displayDate = `${numYear} year${resolveS(numYear)} ago`;
+    } else if (numMonths >= 1) {
+      displayDate = `${numMonths} month${resolveS(numMonths)} ago`;
+    } else if (numDays >= 1) {
+      displayDate = `${numDays} day${resolveS(numDays)} ago`;
+    } else if (numHours >= 1) {
+      displayDate = `${numHours} hour${resolveS(numHours)} ago`;
+    } else if (numMin >= 1) {
+      displayDate = `${numMin} minute${resolveS(numMin)} ago`;
+    } else {
+      displayDate = 'Recent Post';
+    }
 return ` <article class="tweet-container">
 <header class="tweet-header">
-<div>
+<div id="header">
  <img class="image" src=${tweet.user.avatars.small}>
- <p class="user">${tweet.user.name}</>
+ <p class="user">${tweet.user.name}</p>
+ <p class="name">${tweet.user.handle}</p>
 </div>
 </header>
 <section>
   <p> ${tweet.content.text}</p>
 </section>
 <footer class="tweet-footer">
+<div id="icons">
 <i class="fas fa-flag"></i>
 <i class="fas fa-retweet"></i>
 <i class="far fa-thumbs-up"></i>
-  <p>${new Date(tweet.created_at)}</p>
+</div>
+  <p id="date">${displayDate}</p>
 </footer>
 </article>`
 }
+
 //accessing tweets saving to a variable and prepending to tweets container
 function renderTweets(tweets) {
   for (tweet in tweets) {
