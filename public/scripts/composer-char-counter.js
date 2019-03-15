@@ -3,7 +3,7 @@ $(document).ready(function() {
     var $textMax= 140;
   $(".counter").html($textMax);
 
-  $("textarea").keydown (function(evt) {
+  $('.tweet_text_area').keyup ( function(evt) {
       var $textLength = evt.target.value.length;
       var $textRemaining = $textMax - $textLength;
 

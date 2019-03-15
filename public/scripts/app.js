@@ -99,7 +99,7 @@ const data = [
       "created_at": 1461113796368
     }
   ]
-  
+  $( document ).ready(function() {
  //creating tweets object
  function createTweetElement(tweet) {
   let currentDate = new Date(Date.now());
@@ -148,13 +148,15 @@ return ` <article class="tweet-container">
 </article>`
 }
 
-//accessing tweets saving to a variable and prepending to tweets container
+// accessing tweets saving to a variable and prepending to tweets container
 function renderTweets(tweets) {
+  $('#tweets1').html('');
   for (tweet in tweets) {
       let $newTweet = createTweetElement(tweets[tweet]);
       $('#tweets1').prepend($newTweet);
     }
 }
+
   //getting tweets
 function getAllTweets() {
   $.get("/tweets", function(data) {
@@ -169,13 +171,17 @@ let $form = $(".textbox");
 // bind a submit event handler to the right form
 $form.on('submit', function(event) {
   event.preventDefault()
+  let $textArea = $('.tweet_text_area').val().trim();
   var counter = $('.counter').text();
  if (counter < 0) {
    $('.errorChar').show().fadeOut(3000);
   
  } else if (counter == 140) {
    $('.errorEmpty').show().fadeOut(3000);
- } else {
+ } else if ($textArea === '') {
+   $('.errorEmpty').show().fadeOut(3000);
+ }
+ else {
   $.ajax( "/tweets", {
     method: 'post',
     data: $($form).serialize(),
@@ -189,7 +195,6 @@ $form.on('submit', function(event) {
 }
 })
  
-let $compose = $(".new-tweet");
 let newTweetMargin = $('.new-tweet').css('margin-top');
 
 $('#compose').on('click', function(event) {
@@ -201,5 +206,5 @@ $('#compose').on('click', function(event) {
     $(".new-tweet").animate({'margin-top': -194}, 500);
   }
 })
-
 getAllTweets();
+  })
