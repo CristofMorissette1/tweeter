@@ -48,10 +48,9 @@ opacity: 1;
 }
 
 #compose {
-  position: relative;
-  left: 70rem;
-  width: 7rem;
-  height: 3rem;
+  display: flex;
+  float: right;
+  padding: 1rem 0.9rem;
 }
 
 .error {

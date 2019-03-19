@@ -192,6 +192,7 @@ $form.on('submit', function(event) {
       $('.text').focus();
     } 
   })
+  $('.tweet_text_area').val('') 
 }
 })
  
